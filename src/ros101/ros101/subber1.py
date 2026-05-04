@@ -1,27 +1,22 @@
-# 터틀봇의 위치 받기 기본 1
+# pubber1.py의 터틀 cmd_vel 받아 출력
 import rclpy
 from rclpy.node import Node
-from turtlesim.msg import Pose
+from geometry_msgs.msg import Twist
 
 class TurtleSubber1(Node):
     def __init__(self):
         super().__init__('t_sub_node1')
         self.subber = self.create_subscription(
-            Pose,
-            '/turtle1/pose',
-            self.callback,
+            Twist,
+            '/turtle1/cmd_vel',
+            self.subcallback,
             10
         )
-        self.subber # Prevent unused variable warning
-    def callback(self, msg):
-        print("X:", msg.x, ", Y:", msg.y)
-        # 터틀 퍼블리셔가 보내는 msg: publish(msg)
-        # msg = Twist()
-        # msg.linear.x = 1.0
-        # msg.angular.z = 0.5
-        # msg.pubber.publish(msg) 
-        # 즉, 위 linear, angular 값이 담긴 Twist 객체 하나를 퍼블리시함.
-
+        self.subber
+    
+    def subcallback(self, msg):
+        self.get_logger().info(f'[Subber heard] X: {msg.linear.x}, Y: {msg.angular.z}')
+    
 def main(args=None):
     rclpy.init(args=args)
 

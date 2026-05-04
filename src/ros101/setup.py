@@ -20,6 +20,10 @@ setup(
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
+            'subber0_1 = ros101.subber0_1:main',
+            'pubber0 = ros101.pubber0:main',
+            'subber0 = ros101.subber0:main',
+            'pubber1 = ros101.pubber1:main',
             'subber1 = ros101.subber1:main',
         ],
     },
