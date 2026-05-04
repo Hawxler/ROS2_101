@@ -15,6 +15,12 @@ class TurtleSubber1(Node):
         self.subber # Prevent unused variable warning
     def callback(self, msg):
         print("X:", msg.x, ", Y:", msg.y)
+        # 터틀 퍼블리셔가 보내는 msg: publish(msg)
+        # msg = Twist()
+        # msg.linear.x = 1.0
+        # msg.angular.z = 0.5
+        # msg.pubber.publish(msg) 
+        # 즉, 위 linear, angular 값이 담긴 Twist 객체 하나를 퍼블리시함.
 
 def main(args=None):
     rclpy.init(args=args)
