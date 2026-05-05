@@ -27,12 +27,23 @@ class MsgSubber2(Node):
         self.last_cmd_vel_linear = 0.0
         self.last_cmd_vel_angular = 0.0
 
+    # 가라고 명령한 값
     def cmd_vel_callback(self, msg):
         self.last_cmd_vel_linear = msg.linear.x
         self.last_cmd_vel_angular = msg.angular.z
     
+    # 현재 이동한 위치 값
     def pose_callback(self, msg):
         cmd_pose = MyMessage1()
+        #######################                          
+        # float32 cmd_vel_linear
+        # float32 cmd_vel_angular
+
+        # float32 pose_x
+        # float32 pose_y
+        # float32 linear_vel
+        # float32 angular_vel
+        #######################
 
         # /turtle1/cmd_vel에서 받은 명령값
         cmd_pose.cmd_vel_linear = self.last_cmd_vel_linear
