@@ -25,6 +25,8 @@ setup(
             'subber0 = ros101.subber0:main',
             'pubber1 = ros101.pubber1:main',
             'subber1 = ros101.subber1:main',
+            'sub_msg1 = ros101.sub_msg1:main',
+            'sub_msg2 = ros101.sub_msg2:main',
         ],
     },
 )
