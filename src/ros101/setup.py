@@ -28,6 +28,9 @@ setup(
             'sub_msg1 = ros101.sub_msg1:main',
             'sub_msg2 = ros101.sub_msg2:main',
             'sub_msg3 = ros101.sub_msg3:main',
+            'srvc_srvr1 = ros101.srvc_srvr1:main',
+            'srvc_tele1 = ros101.srvc_tele1:main',
+            'srvc_spawn1 = ros101.srvc_spawn1:main', 
         ],
     },
 )
