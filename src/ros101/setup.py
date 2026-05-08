@@ -21,6 +21,7 @@ setup(
     entry_points={
         'console_scripts': [
             'subber0_1 = ros101.subber0_1:main',
+            'subber0_2 = ros101.subber0_2:main',
             'pubber0 = ros101.pubber0:main',
             'subber0 = ros101.subber0:main',
             'pubber1 = ros101.pubber1:main',
@@ -31,6 +32,10 @@ setup(
             'srvc_srvr1 = ros101.srvc_srvr1:main',
             'srvc_tele1 = ros101.srvc_tele1:main',
             'srvc_spawn1 = ros101.srvc_spawn1:main', 
+            'act_dist1 = ros101.act_dist1:main',
+            'act_dist2 = ros101.act_dist2:main',
+            'act_thread1 = ros101.act_thread1:main',
+            'act_thread2 = ros101.act_thread2:main',
         ],
     },
 )
