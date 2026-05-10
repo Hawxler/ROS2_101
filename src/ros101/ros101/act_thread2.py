@@ -37,6 +37,10 @@ import time
 class DistSrvr3(Node):
     def __init__(self):
         super().__init__("act_srvr_node3")
+        self.total_dist = 0.0
+        self.is_first_time = True # 처음이면 현재 위치를 이전 위치에 대입
+        self.current_pose = Pose()
+        self.previous_pose = Pose()
 
         #1. 액션 서버 생성
         self.srvr_act3 = ActionServer(
@@ -52,11 +56,6 @@ class DistSrvr3(Node):
             '/turtle1/cmd_vel', 
             10
         )
-
-        self.total_dist = 0.0
-        self.is_first_time = True # 처음이면 현재 위치를 이전 위치에 대입
-        self.current_pose = Pose()
-        self.previous_pose = Pose()
     
     def calc_diff_pose(self):
         if self.is_first_time:
@@ -108,18 +107,18 @@ class DistSrvr3(Node):
         
         return result
 
-# 4. 구속 노드 상속 클라스
+# 4. 구독 노드를 상속하는 클래스
 # pose 구독한 값을 DistSrvr3.current_pose에 넣어줌.
 # TurtleSubber0_2는 /turtle1/pose를 구독함.
 class TurtleSub_Act(TurtleSubber0_2):
     def __init__(self, act_server): # act_server = DistSrvr3의 객체
         super().__init__()
-        self._act_server = act_server #current_pose 갱신용
+        self.act_server = act_server #current_pose 갱신용
     
     def sub_callback(self, msg): # Overriding
         #부모 sub_callback()의 latest_pose 갱신
         super().sub_callback(msg) #또는 그냥 self.latest_pose = msg 라고 직접 수정해도 되기는 함.
-        self._act_server.current_pose = msg #msg.x, msg.y, msg 세타
+        self.act_server.current_pose = msg #msg.x, msg.y, msg 세타
 
 def main(args=None):
     rclpy.init(args=args)

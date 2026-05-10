@@ -36,6 +36,7 @@ setup(
             'act_dist2 = ros101.act_dist2:main',
             'act_thread1 = ros101.act_thread1:main',
             'act_thread2 = ros101.act_thread2:main',
+            'act_thread3 = ros101.act_thread3:main',
         ],
     },
 )
