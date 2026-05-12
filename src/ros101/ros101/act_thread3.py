@@ -5,6 +5,7 @@ from rclpy.action import ActionServer
 from rclpy.executors import MultiThreadedExecutor
 from turtlesim.msg import Pose
 from geometry_msgs.msg import Twist
+from rcl_interfaces.msg import SetParametersResult
 
 from interface_pkg1.action import MyAction1
 ###########################
@@ -34,12 +35,17 @@ class DistSrvr4(Node):
         self.is_first_time = True
         self.current_pose = Pose()
         self.previous_pose = Pose()
+
+        # 파라미터 연습용 블록
         self.declare_parameter('quantile_time', 0.75)
         self.declare_parameter('near_goal_time', 0.95)
         quantile_time, near_goal_time = self.get_parameters(
             ['quantile_time', 'near_goal_time']
         )
-        print(f'quantile_time: {quantile_time.value}, near_goal_time: {near_goal_time.value}')
+        self.quantile_time = quantile_time.value
+        self.near_goal_time = near_goal_time.value
+        # print(f'quantile_time: {quantile_time.value}, near_goal_time: {near_goal_time.value}')
+        self.add_on_set_parameters_callback(self.param_callback)
 
         #1. 액션 서버 생성
         self.srvr_act4 = ActionServer(
@@ -55,6 +61,21 @@ class DistSrvr4(Node):
             '/turtle1/cmd_vel',
             10
         )
+    
+    # 터미널에서 파라미터 변경하면 내용 출력
+    # from rcl_interfaces.msg import SetParametersResult
+    def param_callback(self, params):
+        for param in params:
+            print(param.name, "변경 후:", param.value)
+            
+            # 파이썬 코드에서도 변경 변수값 적용해두기
+            if param.name == 'quantile_time':
+                self.quantile_time = param.value
+            if param.name == 'near_goal_time':
+                self.near_goal_time = param.value
+        
+        print(f'[변경 적용] quantile_time: {self.quantile_time}, near_goal_time: {self.near_goal_time}')
+        return SetParametersResult(successful=True) 
 
     def calc_diff_pose(self):
         if self.is_first_time:
@@ -77,6 +98,7 @@ class DistSrvr4(Node):
     # goal_handle.publish_feedback()
     # goal_handle.succeed()
     def execute_callback(self, goal_handle):
+        self.get_logger().info("액션 서버 콜백 실행")
         feedback_msg = MyAction1.Feedback() # remaining_dist
 
         msg = Twist()
@@ -86,13 +108,14 @@ class DistSrvr4(Node):
         while True:
             self.total_dist += self.calc_diff_pose()
             feedback_msg.remaining_dist = goal_handle.request.dist - self.total_dist
-            print(f'남은 거리: {feedback_msg.remaining_dist:.2f}')
+            self.get_logger().info(f'남은 거리: {feedback_msg.remaining_dist:.2f}')
             goal_handle.publish_feedback(feedback_msg)
             self.pubber3.publish(msg)
             
             time.sleep(0.1)
 
             if feedback_msg.remaining_dist < 0.2:
+                self.get_logger().info("목표 거리 도달")
                 break
             
         goal_handle.succeed()
