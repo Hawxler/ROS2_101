@@ -37,6 +37,7 @@ setup(
             'act_thread1 = ros101.act_thread1:main',
             'act_thread2 = ros101.act_thread2:main',
             'act_thread3 = ros101.act_thread3:main',
+            'act_thread4 = ros101.act_thread4:main',
         ],
     },
 )
