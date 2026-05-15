@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+
+<launch>
+    <include file="$(find-pkg-share launcher_pkg1)/launch/a_turtlesim01.launch.xml" />
+    <include file="$(find-pkg-share launcher_pkg1)/launch/a_pubber01.launch.xml" />
+</launch>

@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+
+<launch>
+    <node
+        pkg="turtlesim"
+        exec="turtlesim_node"
+        namespace="turtlesim1"
+        output="screen"
+    />
+    <node
+        pkg="launcher_pkg1"
+        exec="pubber1"
+        namespace="hawx_name1"
+        output="screen">
+        <remap from="/hawx_name1/turtle1/cmd_vel"
+                to="/turtlesim1/turtle1/cmd_vel"/>
+    </node>
+</launch>

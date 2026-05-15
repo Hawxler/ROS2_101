@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+
+<launch>
+    <node
+        pkg="turtlesim"
+        exec="turtlesim_node"
+        namespace="turtlesim1"
+        output="screen"
+    />
+
+    <node
+        pkg="launcher_pkg1"
+        exec="pubber1"
+        namespace="turtlesim1"
+        output="screen"
+    />
+</launch>
