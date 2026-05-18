@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<launch>
+    <arg name ="params_file"
+            default="$(find-pkg-share cv_pkg1)/config/size1.yaml"/>
+    <node pkg="cv_pkg1" exec="img_pub2" output="screen">
+        <param from="$(var params_file)"/>
+    </node>
+</launch>

@@ -1,0 +1,4 @@
+img_pub_node2:
+    ros__parameters:
+        width: 320
+        height: 240
