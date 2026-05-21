@@ -1,0 +1,22 @@
+img_pub_node3:
+  ros__parameters:
+    camera_device: 0
+    width: 320
+    height: 240
+    frame_rate: 30
+
+img_pub_node4:
+  ros__parameters:
+    sat_scale: 1.0
+    val_scale: 1.0
+
+canny_edge_node5:
+  ros__parameters:
+    low_threshold: 100
+    high_threshold: 200
+
+cartoon_pub_node6:
+  ros__parameters:
+    blur_kernel_size: 5
+    sigma_color: 9
+    sigma_apace: 7
