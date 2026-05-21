@@ -1,0 +1,6 @@
+img_pub_node3:
+  ros__parameters:
+    width: 640
+    height: 480
+    camera_device: "/dev/video0"
+    frame_rate: 30
