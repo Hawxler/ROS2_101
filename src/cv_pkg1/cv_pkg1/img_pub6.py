@@ -51,7 +51,7 @@ class CartoonPub1(Node):
         self.get_logger().info(f'sigma_color 초기값: {sigma_color}')
         self.get_logger().info(f'sigma_space 초기값: {sigma_space}')
 
-        #4. Add on_set_parameters_callback 등록
+        #4. 파라미터 변경 callback 등록
         self.add_on_set_parameters_callback(self.para_callback)
 
         #5. cv_bridge 생성
@@ -66,7 +66,7 @@ class CartoonPub1(Node):
     
     # 카툰 스타일 변환 후 이미지 발행
     def img_callback(self, msg):
-        # 파라미터 값 받아오기
+        # 매 이미지마다 파라미터 값 받아오기
         sigma_color = self.get_parameter('sigma_color').value
         sigma_space = self.get_parameter('sigma_space').value
 
@@ -77,6 +77,7 @@ class CartoonPub1(Node):
         edges = 255 - cv2.Canny(cv_img, 80, 120)
         edges = cv2.cvtColor(edges, cv2.COLOR_GRAY2BGR)
 
+        # bilateral 필터로 노이즈 제거된 이미지와 엣지 이미지를 bit and 연산하여 카툰 스타일 이미지 생성(edges는 외곽선 마스크)
         cartoon_img = cv2.bitwise_and(bilateral, edges)
 
         # OpenCV img -> ROS img

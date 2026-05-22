@@ -39,6 +39,7 @@ setup(
             'img_pub4 = cv_pkg1.img_pub4:main',
             'img_pub5 = cv_pkg1.img_pub5:main',
             'img_pub6 = cv_pkg1.img_pub6:main',
+            'img_pub7 = cv_pkg1.img_pub7:main',
         ],
     },
 )
