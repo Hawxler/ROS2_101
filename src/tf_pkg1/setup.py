@@ -24,7 +24,11 @@ setup(
     },
     entry_points={
         'console_scripts': [
-            'static_tf_pub1 = tf_pkg1.static_tf_pub1:main'
+            'static_tf_pub1 = tf_pkg1.static_tf_pub1:main',
+            'tf_b1 = tf_pkg1.tf_b1:main',
+            'tf_b2 = tf_pkg1.tf_b2:main',
+            'tf_b2_1 = tf_pkg1.tf_b2_1:main',
+            'tf_b2_2 = tf_pkg1.tf_b2_2:main',
         ],
     },
 )

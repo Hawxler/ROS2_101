@@ -30,7 +30,7 @@ class OpticalFlowPub(Node):
         self.bridge1 = CvBridge()
         self.prev_gray = None # 이전 프레임의 그레이스케일 이미지 저장
 
-    # 이미지 콜백 함수
+    # 이미지 콜백 함수(/image_raw 토픽에서 이미지 메시지를 수신할 때마다 호출됨)
     def img_callback(self, msg):
         #1. ROS img > OpenCV img > 그레이스케일 변환
         current_frame = self.bridge1.imgmsg_to_cv2(msg, desired_encoding='bgr8')
@@ -42,6 +42,7 @@ class OpticalFlowPub(Node):
             return
         
         #3. Optical Flow 계산(Farneback 방법 사용)
+        # 각 픽셀마다 이동 벡터(dx, dy) 가짐. (h, w, 2) -> (y, x, (dx, dy)): flow[y, x] = (dx, dy)
         flow = cv2.calcOpticalFlowFarneback(
             self.prev_gray, 
             current_gray,
@@ -95,3 +96,20 @@ def main(args=None):
 
 if __name__ == '__main__':
     main()
+
+"""
+cv2.calcOpticalFlowFarneback() 함수는 두 개의 그레이스케일 이미지 사이에서 픽셀 이동을 추정하는 광학 흐름 알고리즘입니다. 이 함수는 각 픽셀마다 이동 벡터(dx, dy)를 계산하여 이미지에서 움직임을 나타냅니다. 결과로 얻어진 flow 배열은 (h, w, 2) 형태로 저장되며, 각 픽셀 위치 (y, x)에서 flow[y, x]는 해당 픽셀의 이동 벡터 (dx, dy)를 포함합니다.
+
+cv2.calcOpticalFlowFarneback(
+    prev_gray,      # 이전 프레임의 그레이스케일 이미지
+    current_gray,   # 현재 프레임의 그레이스케일 이미지
+    flow, # 결과를 저장할 배열 (None으로 설정하면 내부적으로 생성)
+    pyr_scale,  # 이미지 피라미드에서 각 레벨의 크기 비율 (예: 0.5는 각 레벨이 이전 레벨의 절반 크기)
+    levels,   # 피라미드 레벨 수 (예: 3은 3레벨 피라미드 사용)
+    window_size, # 각 레벨에서의 윈도우 크기 (예: 15는 15x15 윈도우 사용)
+    iterations, # 각 레벨에서의 반복 횟수 (예: 3은 3회 반복하여 계산)
+    poly_n, # 다항식 근사 확장에 사용되는 픽셀 주변 영역 크기 (예: 5는 5x5 영역 사용)
+    poly_sigma, # 다상식 근사 smoothing에 사용되는 가우시안 표준 편차 (예: 1.2는 표준 편차 1.2 사용)
+    flags   # 옵션 플래그 (예: 0은 기본 설정, cv2.OPTFLOW_USE_INITIAL_FLOW는 초기 흐름 사용, cv2.OPTFLOW_FARNEBACK_GAUSSIAN는 가우시안 윈도우 사용
+)
+"""
