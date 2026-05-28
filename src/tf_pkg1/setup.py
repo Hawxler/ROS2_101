@@ -29,6 +29,10 @@ setup(
             'tf_b2 = tf_pkg1.tf_b2:main',
             'tf_b2_1 = tf_pkg1.tf_b2_1:main',
             'tf_b2_2 = tf_pkg1.tf_b2_2:main',
+            'tf_listen1 = tf_pkg1.tf_listen1:main',
+            'trail_pub1_marker1 = tf_pkg1.trail_pub1_marker1:main',
+            'trail_pub2_nav1 = tf_pkg1.trail_pub2_nav1:main',
+            'trail_pub2_nav2 = tf_pkg1.trail_pub2_nav2:main',
         ],
     },
 )
