@@ -1,0 +1,13 @@
+# Goal
+float32 linear_x
+float32 angular_z
+float32 laps  # 목표 회전수. 예: 10.0
+---
+# Result
+float32 pose_x
+float32 pose_y
+float32 pose_theta
+float32 result_laps  # 완료 회전 수
+---
+# Feedback
+float32 remaining_laps # 남은 회전 수

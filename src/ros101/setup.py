@@ -41,6 +41,10 @@ setup(
             'domain_pub1 = ros101.domain_pub1:main',
             'domain_pub2 = ros101.domain_pub2:main',
             'domain_pub3 = ros101.domain_pub3:main',
+            'act0_srvr1 = ros101.act0_srvr1:main',
+            'act0_cli1 = ros101.act0_cli1:main',
+            'act1_srvr1 = ros101.act1_srvr1:main',
+            'act1_cli1 = ros101.act1_cli1:main',
         ],
     },
 )

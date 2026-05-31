@@ -14,6 +14,7 @@ rosidl_generate_interfaces(${PROJECT_NAME}
   "msg/MyMessage2.msg"
   "srv/MyService1.srv"
   "action/MyAction1.action"
+  "action/MyAction2.action"
 )
 
 ament_export_dependencies(rosidl_default_runtime)
