@@ -38,6 +38,7 @@ setup(
             'act_thread2 = ros101.act_thread2:main',
             'act_thread3 = ros101.act_thread3:main',
             'act_thread4 = ros101.act_thread4:main',
+            'domain_act1 = ros101.domain_act1:main',
             'domain_pub1 = ros101.domain_pub1:main',
             'domain_pub2 = ros101.domain_pub2:main',
             'domain_pub3 = ros101.domain_pub3:main',

@@ -15,7 +15,7 @@ class TurtleActor(Node):
         self.target_theta = math.radians(target_theta_deg)
 
         # rotate_absolute 액션 클라 생성
-        self.act_cli = ActionClient(self, RotateAbsolute, '/turtle/rotate_absolute')
+        self.act_cli = ActionClient(self, RotateAbsolute, '/turtle1/rotate_absolute')
     
     def send_goal1(self):
         # 액션 서버 준비 대기
