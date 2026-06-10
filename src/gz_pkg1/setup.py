@@ -29,6 +29,10 @@ setup(
             'r1_dist1 = gz_pkg1.r1_dist1:main',
             'r1_rotate1 = gz_pkg1.r1_rotate1:main',
             'r1_square1 = gz_pkg1.r1_square1:main',
+            'r1_cv_sub1 = gz_pkg1.r1_cv_sub1:main',
+            'r1_cv_edge1 = gz_pkg1.r1_cv_edge1:main',
+            'r1_imu_sub1 = gz_pkg1.r1_imu_sub1:main',
+            'r1_imu_remo1 = gz_pkg1.r1_imu_remo1:main',
         ],
     },
 )
